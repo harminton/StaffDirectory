@@ -71,6 +71,15 @@ namespace StaffDirectory.Areas.Identity.Pages.Account
         /// </summary>
         public class InputModel
         {
+            [Required]
+            [StringLength(255, ErrorMessage ="The first name field should have a maximume of 255 character")]
+            [Display(Name ="FirstName")]
+            public String LastName { get; set; }
+
+            [Required]
+            [StringLength(255, ErrorMessage = "The last name field should have a maximume of 255 character")]
+            [Display(Name = "LastName")]
+            public String FirstName { get; set; }
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -113,7 +122,11 @@ namespace StaffDirectory.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+
                 var user = CreateUser();
+
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

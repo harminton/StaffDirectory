@@ -7,7 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("StaffContextCo
 builder.Services.AddDbContext<StaffContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<StaffUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<StaffUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<StaffContext>();
 
 // Add services to the container.
@@ -34,5 +34,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();

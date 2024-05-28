@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StaffDirectory.Areas.Identity.Data;
 
@@ -11,9 +12,10 @@ using StaffDirectory.Areas.Identity.Data;
 namespace StaffDirectory.Migrations
 {
     [DbContext(typeof(StaffContext))]
-    partial class StaffContextModelSnapshot : ModelSnapshot
+    [Migration("20240324223641_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,7 +263,7 @@ namespace StaffDirectory.Migrations
 
                     b.HasKey("StaffId");
 
-                    b.ToTable("StaffMembers", (string)null);
+                    b.ToTable("StaffMembers");
                 });
 
             modelBuilder.Entity("StaffDirectory.Models.Students", b =>
@@ -292,7 +294,7 @@ namespace StaffDirectory.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
